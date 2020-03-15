@@ -122,6 +122,7 @@ protected:
 public:
     MainWindow(QWidget *parent = 0);
     MainWindow(char* filename, bool single, QWidget *parent = 0);
+    MainWindow(char* filename, bool single, char* pointsFileName, QWidget *parent = 0);
     ~MainWindow();
 
     QString nextLabel(QString currentLabel);

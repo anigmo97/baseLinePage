@@ -49,7 +49,7 @@ MainWindow::MainWindow(QWidget *parent)
 }
 
 /* Editar per a que reba més coses, incialitzar estructura on se guarda la info de labels */
-MainWindow::MainWindow(char* filename, bool single, QWidget *parent)
+MainWindow::MainWindow(char* filename, bool single, char* pointsFileName, QWidget *parent)
     : QMainWindow(parent)
 {
     viewport = new GLViewport(this);
@@ -67,6 +67,8 @@ MainWindow::MainWindow(char* filename, bool single, QWidget *parent)
     connectSignalsToSlots();
     if(filename)
         loadFile(filename,single);
+    if((pointsFileName != NULL))
+        loadPointsFile(pointsFileName);
 }
 
 MainWindow::~MainWindow()

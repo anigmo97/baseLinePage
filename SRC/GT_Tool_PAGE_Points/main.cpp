@@ -29,25 +29,40 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     char* filename=0;
+    char* pointsFileName = NULL;
 
     bool single;
+    bool pointsFile = false;
     if(argc==2){
         single = true;
         filename = argv[1];
     }else{
         int option;
-        while ((option=getopt(argc,argv,"l:"))!=-1)
+        while ((option=getopt(argc,argv,"l:f:p:"))!=-1)
             switch (option)  {
             case 'l':
                 single = false;
                 filename=optarg;
                 break;
+            case 'f':
+                single = true;
+                filename = optarg;
+                break;
+            case 'p':
+                single = true;
+                pointsFile = true;
+                pointsFileName = optarg;
+                break;
             default:
               cerr << "Unknown parameter : -" << option << " " << optarg << endl;
             }
     }
-    MainWindow w(filename,single);
+    if(pointsFile)
+        cerr << "In : Filename "  << filename  << " pointsFileName " << pointsFileName << " Single "<< single << endl;
+    
+    MainWindow w(filename,single,pointsFileName);
     w.show();
+    
     
     return a.exec();
 }
